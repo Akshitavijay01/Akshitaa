@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Elite Occasions - Luxury Event Planning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B4891D;
+            --light-gold: #FFE5B4;
+            --dark-blue: #0a1928;
+            --darker-blue: #061018;
+            --white: #ffffff;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--dark-blue), var(--darker-blue));
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .navigation {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 12px 28px;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .navigation a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .navigation a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .navigation a:hover {
+            border-color: var(--gold);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--light-gold), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 60px 0;
+            padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleFade 1s ease-in-out;
+        }
+
+        @keyframes titleFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 0 30px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeIn 1s ease-in-out;
+        }
+        /* Enhanced Stats Section */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin: 4rem auto;
+            padding: 2rem;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 15px;
+            border: 1px solid var(--gold);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Enhanced Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .service-card:hover .service-image {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 2rem;
+            background: linear-gradient(to top, rgba(10, 25, 40, 0.95), transparent);
+        }
+
+        .service-title {
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .service-description {
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        /* Enhanced Testimonials */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin: 4rem auto;
+            max-width: 1200px;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--gold);
+            opacity: 0.2;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .client-quote {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .client-name {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Enhanced CTA Section */
+        .cta-section {
+            text-align: center;
+            margin: 6rem auto;
+            padding: 6rem 2rem;
+            background: linear-gradient(rgba(10, 25, 40, 0.9), rgba(10, 25, 40, 0.9)),
+                        url('photos1/h.jpg') center/cover;
+            border-radius: 30px;
+            max-width: 1200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, transparent, rgba(212, 175, 55, 0.1));
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, var(--dark-blue), var(--darker-blue));
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            padding: 2rem;
+            position: relative;
+            animation: modalFade 0.5s ease;
+        }
+
+        @keyframes modalFade {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--gold);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-modal:hover {
+            transform: rotate(90deg);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-submit {
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            color: var(--dark-blue);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.4s;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-content {
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+        }
+
+        .gallery-image {
+            width: 100%;
+            border: 3px solid var(--gold);
+            border-radius: 10px;
+        }
+
+        .gallery-nav {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .gallery-button {
+            background: rgba(212, 175, 55, 0.5);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-button:hover {
+            background: var(--gold);
+        }
+
+        .close-gallery {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--gold);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gold);
+            color: var(--dark-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(212, 175, 55, 0.9);
+            color: var(--dark-blue);
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.5s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .stats-container,
+            .services-grid,
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .navigation {
+                padding: 10px 0;
+            }
+
+            .navigation a {
+                margin: 0 5px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+
+            .main-title {
+                font-size: 2rem;
+                margin: 30px 0;
+            }
+
+            .modal-content,
+            .gallery-content {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img class="logo" src="logo.jpg" alt="Elite Occasions Logo">
+    </div>
+    
+    <nav class="navigation">
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about1.html">About</a>
+            <a href="checklist1.html">Checklist</a>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="main-title">Elite Occasions</h1>
+            <div class="container">
+                <p class="intro-text">Crafting Extraordinary Moments with Unparalleled Elegance</p>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <h1 class="main-title">Luxury Event Management</h1>
+        <div class="container">
+            <p class="intro-text">
+                A refined and sophisticated name that evokes a sense of exclusivity and high-end event experiences.<br>
+                It suggests your event organizing site will offer exceptional, personalized services designed for clients seeking luxury and excellence.
+            </p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card" data-count="500">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Events Crafted</div>
+            </div>
+            <div class="stat-card" data-count="12">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-card" data-count="60">
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Annual Clients</div>
+            </div>
+            <div class="stat-card" data-count="4">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Cities Served</div>
+            </div>
+        </div>
+
+        <h2 class="main-title">Our Signature Services</h2>
+        <div class="services-grid">
+            <div class="service-card" data-service="wedding">
+                <img src="w.jpg" alt="Luxury Weddings" class="service-image">
+                <div class="service-content">
+                    <h3 class="service-title">Luxury Weddings</h3>
+                    <p class="service-description">Creating timeless moments with meticulous attention to every detail.</p>
+                </div>
+            </div>
+            <div class="service-card" data-service="corporate">
+                <img src="management.webp" alt="Corporate Events" class="service-image">
+                <div class="service-content">
+                    <h3 class="service-title">Corporate Events</h3>
+                    <p class="service-description">Elevating business gatherings with professional excellence.</p>
+                </div>
+            </div>
+            <div class="service-card" data-service="social">
+                <img src="h.jpg" alt="Social Celebrations" class="service-image">
+                <div class="service-content">
+                    <h3 class="service-title">Social Celebrations</h3>
+                    <p class="service-description">Transforming special moments into unforgettable memories.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="main-title">Client Experiences</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p class="client-quote">Elite Occasions transformed our vision into reality. Every detail was executed with perfection.</p>
+                <p class="client-name">- Riya & Rahul</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="client-quote">Our corporate event was handled with exceptional professionalism and creativity.</p>
+                <p class="client-name">- Rajesh Kumar, CEO</p>
+            </div>
+            <div class="testimonial-card">
+                <p class="client-quote">They made our daughter's wedding a fairy tale come true. Simply outstanding!</p>
+                <p class="client-name">- The Sharma Family</p>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2 class="cta-title">Begin Your Elite Journey</h2>
+            <button class="cta-button" id="openModal">Schedule a Consultation</button>
+        </div>
+    </main>
+
+    <!-- Modal for Consultation Booking -->
+    <div class="modal" id="consultationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="main-title" style="margin: 0 0 20px 0; font-size: 2rem;">Book Your Consultation</h2>
+            <form id="consultationForm">
+                <div class="form-group">
+                    <label class="form-label" for="name">Your Name</label>
+                    <input type="text" id="name" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventType">Event Type</label>
+                    <select id="eventType" class="form-input" required>
+                        <option value="">Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="social">Social Celebration</option>
+                        <option value="other">Other (Please Specify)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="message">Tell Us About Your Event</label>
+                    <textarea id="message" class="form-input form-textarea" required></textarea>
+                </div>
+                <button type="submit" class="form-submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Image Gallery Modal -->
+    <div class="image-gallery" id="imageGallery">
+        <div class="gallery-content">
+            <span class="close-gallery">&times;</span>
+            <img src="" alt="Gallery Image" class="gallery-image" id="galleryImage">
+            <div class="gallery-nav">
+                <button class="gallery-button" id="prevImage">&lt;</button>
+                <button class="gallery-button" id="nextImage">&gt;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">&#8679;</button>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Your form has been submitted successfully!</div>
+
+    <script>
+        // Wait for DOM to fully load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Counter Animation for Stats
+            function animateCounters() {
+                const statCards = document.querySelectorAll('.stat-card');
+                statCards.forEach(card => {
+                    const target = parseInt(card.getAttribute('data-count'));
+                    const statNumber = card.querySelector('.stat-number');
+                    const suffix = statNumber.textContent.includes('+') ? '+' : '';
+                    let count = 0;
+                    const duration = 2000; // 2 seconds
+                    const interval = Math.min(50, duration / target);
+                    const increment = Math.ceil(target / (duration / interval));
+                    
+                    const timer = setInterval(() => {
+                        count += increment;
+                        if (count >= target) {
+                            count = target;
+                            clearInterval(timer);
+                        }
+                        statNumber.textContent = count + suffix;
+                    }, interval);
+                });
+            }
+
+            // Animate on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsContainer = document.querySelector('.stats-container');
+            if (statsContainer) {
+                observer.observe(statsContainer);
+            }
+
+            // Consultation Modal
+            const modal = document.getElementById('consultationModal');
+            const openModalBtn = document.getElementById('openModal');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const consultationForm = document.getElementById('consultationForm');
+            const toast = document.getElementById('toast');
+
+            openModalBtn.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+
+            // Form submission
+            consultationForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    consultationForm.reset();
+                    
+                    // Show toast notification
+                    toast.classList.add('show');
+                    setTimeout(() => {
+                        toast.classList.remove('show');
+                    }, 3000);
+                }, 1000);
+            });
+
+            // Service Card Gallery
+            const serviceCards = document.querySelectorAll('.service-card');
+            const imageGallery = document.getElementById('imageGallery');
+            const galleryImage = document.getElementById('galleryImage');
+            const closeGallery = document.querySelector('.close-gallery');
+            const prevImageBtn = document.getElementById('prevImage');
+            const nextImageBtn = document.getElementById('nextImage');
+
+            // Sample gallery images for each service
+            const galleryImages = {
+                wedding: ['w.jpg', 'h.jpg', 'logo.jpg'],
+                corporate: ['management.webp', 'logo.jpg', 'h.jpg'],
+                social: ['h.jpg', 'w.jpg', 'management.webp']
+            };
+
+            let currentService = '';
+            let currentImageIndex = 0;
+
+            serviceCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    currentService = card.getAttribute('data-service');
+                    currentImageIndex = 0;
+                    updateGalleryImage();
+                    imageGallery.style.display = 'flex';
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            closeGallery.addEventListener('click', () => {
+                imageGallery.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+
+            prevImageBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex - 1 + galleryImages[currentService].length) % galleryImages[currentService].length;
+                updateGalleryImage();
+            });
+
+            nextImageBtn.addEventListener('click', () => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages[currentService].length;
+                updateGalleryImage();
+            });
+
+            function updateGalleryImage() {
+                galleryImage.src = galleryImages[currentService][currentImageIndex];
+                galleryImage.alt = `${currentService} Image ${currentImageIndex + 1}`;
+            }
+
+            // Back to Top Button
+            const backToTopBtn = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', () => {
+                window.
+</script>
+</body>
+</html>

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Elite Occasions - Luxury Event Planning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B4891D;
+            --light-gold: #FFE5B4;
+            --dark-blue: #0a1928;
+            --white: #ffffff;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1928, #1c2f3e);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .navigation {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 12px 28px;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+        }
+
+        .navigation a:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--light-gold), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 60px 0;
+            padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleFade 1s ease-in-out;
+        }
+
+        @keyframes titleFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin: 30px auto;
+            max-width: 800px;
+            padding: 0 30px;
+            color: rgba(255, 255, 255, 0.9);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .read-more {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .read-more a {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            color: var(--dark-blue);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .read-more a:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.4);
+        }
+
+        .divider {
+            width: 80%;
+            margin: 60px auto;
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .image-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .event-image {
+            width: 50%;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .event-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay-text {
+            flex: 1;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            line-height: 1.8;
+            font-size: 1.1rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: transform 0.4s ease;
+        }
+
+        .overlay-text:hover {
+            transform: translateY(-5px);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 40px auto;
+            padding: 0 30px;
+            max-width: 1200px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--gold);
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--dark-gold), var(--gold));
+            color: var(--dark-blue);
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #0f2537, #1c3043);
+            margin: 5% auto;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gold);
+            transform: translateY(-50px);
+            transition: transform 0.5s ease;
+            position: relative;
+        }
+
+        .modal-active {
+            opacity: 1;
+        }
+
+        .modal-active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--gold);
+            cursor: pointer;
+        }
+
+        .modal-header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .modal-header h2 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Testimonials slider */
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 30px;
+            position: relative;
+        }
+
+        .testimonials-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .testimonials-slider {
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--gold);
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .testimonial-navigation {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-dot.active {
+            background: var(--gold);
+            transform: scale(1.2);
+        }
+
+        /* Success message */
+        .success-message {
+            display: none;
+            background: rgba(40, 167, 69, 0.2);
+            color: #98fb98;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid rgba(40, 167, 69, 0.5);
+        }
+
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: var(--dark-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            transform: translateY(20px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .image-container {
+                flex-direction: column;
+            }
+
+            .event-image {
+                width: 100%;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .navigation a {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 1rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 30px;
+                margin: 20px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+       <img class="logo" src="logo.jpg" alt="Elite Occasions Logo">
+    </div>
+    <nav class="navigation">
+        <a href="index.html">Home</a>
+        <a href="about1.html">About</a>
+        <a href="checklist1.html">Checklist</a>
+    </nav>
+    <h1 class="main-title">Where Every Moment is Crafted into a Masterpiece</h1>
+    
+    <p class="intro-text">
+        Welcome to Elite Occasions, where we transform your dreams into unforgettable experiences. As Jaipur's premier event management company, we blend creativity, elegance, and precision to create extraordinary moments that last a lifetime.
+    </p>
+
+    <div class="read-more">
+        <a href="#" id="discover-more">Discover More</a>
+    </div>
+
+    <hr class="divider">
+
+    <div class="image-container">
+        <img class="event-image" src="wed.jpg" alt="Wedding Event">
+        <div class="overlay-text">
+            Elite Occasions stands as Jaipur's most distinguished event management company, having orchestrated over 500 spectacular events including weddings, corporate gatherings, and social celebrations. Our forte lies in giving exceptional attention to intricate details to ensure quality events within budget guidelines. We believe in giving personal attention to events at every stage so that you can be sure that we will treat your wedding like ours while you relax and enjoy the celebrations with near and dear ones. Our concept since inception is that "Your Event -Your Budget, Your Dream=We Make the special moment come true." This makes us the most trusted and innovative event management company in Jaipur.
+        </div>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card" data-service="weddings">
+            <h3>Luxury Weddings</h3>
+            <p>Creating magical moments for your special day, from intimate ceremonies to grand celebrations.</p>
+        </div>
+        <div class="service-card" data-service="corporate">
+            <h3>Corporate Events</h3>
+            <p>Professional excellence in organizing conferences, product launches, and team events.</p>
+        </div>
+        <div class="service-card" data-service="social">
+            <h3>Social Gatherings</h3>
+            <p>Making every celebration unique, from birthdays to anniversary parties.</p>
+        </div>
+    </div>
+
+    <div class="testimonials-container">
+        <h2 class="testimonials-title">What Our Clients Say</h2>
+        <div class="testimonials-slider">
+            <div class="testimonials-track">
+                <div class="testimonial-slide">
+                    <p>"Elite Occasions made our wedding day absolutely magical. Every detail was perfect, and their team was incredibly responsive and professional throughout the process."</p>
+                    <div class="testimonial-author">- Priya & Rahul</div>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"The corporate event was flawlessly executed. Our international clients were impressed with the attention to detail and the seamless coordination. Highly recommended!"</p>
+                    <div class="testimonial-author">- Sundar Pichai, CEO</div>
+                </div>
+                <div class="testimonial-slide">
+                    <p>"My daughter's 18th birthday celebration was beyond our expectations. Elite Occasions understood exactly what we wanted and delivered a perfect evening."</p>
+                    <div class="testimonial-author">- Mrs. Sharma</div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-navigation">
+            <div class="testimonial-dot active" data-index="0"></div>
+            <div class="testimonial-dot" data-index="1"></div>
+            <div class="testimonial-dot" data-index="2"></div>
+        </div>
+    </div>
+
+    <section class="contact-section">
+        <form class="contact-form" id="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <textarea rows="5" id="message" placeholder="Tell us about your dream event" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Begin Your Journey</button>
+            <div class="success-message" id="success-message">Thank you for contacting us! We'll be in touch shortly.</div>
+        </form>
+    </section>
+
+    <!-- Modal for service details -->
+    <div class="modal" id="service-modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-header">
+                <h2 id="modal-title">Service Details</h2>
+            </div>
+            <div id="modal-body">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to top button -->
+    <div class="back-to-top" id="back-to-top">&#8679;</div>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Variables
+            const serviceCards = document.querySelectorAll('.service-card');
+            const modal = document.getElementById('service-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const closeBtn = document.querySelector('.close-btn');
+            const contactForm = document.getElementById('contact-form');
+            const successMessage = document.getElementById('success-message');
+            const backToTopBtn = document.getElementById('back-to-top');
+            const discoverMoreBtn = document.getElementById('discover-more');
+            const testimonialDots = document.querySelectorAll('.testimonial-dot');
+            const testimonialTrack = document.querySelector('.testimonials-track');
+
+            // Service details content
+            const serviceDetails = {
+                weddings: {
+                    title: "Luxury Wedding Services",
+                    content: `
+                        <p>Our luxury wedding services offer a comprehensive approach to creating your dream wedding:</p>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li><strong>Pre-Wedding:</strong> Engagement parties, bridal showers, mehndi, sangeet ceremonies</li>
+                            <li><strong>Wedding Day:</strong> Complete planning and coordination, theme design, venue selection</li>
+                            <li><strong>Post-Wedding:</strong> Reception planning, honeymoon consultations</li>
+                            <li><strong>Specialty Services:</strong> Destination weddings, cultural wedding expertise</li>
+                        </ul>
+                        <p>Each wedding package is customized to your specific vision and budget. Our dedicated wedding specialists will guide you through every step of the process.</p>
+                    `
+                },
+                corporate: {
+                    title: "Corporate Event Services",
+                    content: `
+                        <p>Elevate your company's image with our premium corporate event services:</p>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li><strong>Conferences:</strong> Full-scale conference planning and management</li>
+                            <li><strong>Product Launches:</strong> Innovative presentation concepts to highlight your products</li>
+                            <li><strong>Team Building:</strong> Creative activities designed to strengthen company culture</li>
+                            <li><strong>Corporate Parties:</strong> Elegant celebrations for milestones and achievements</li>
+                        </ul>
+                        <p>We understand the importance of representing your brand with excellence and professionalism. Our team works closely with your company to ensure all events align with your corporate image and objectives.</p>
+                    `
+                },
+                social: {
+                    title: "Social Gathering Services",
+                    content: `
+                        <p>Create lasting memories with our exceptional social event planning:</p>
+                        <ul style="list-style-type: none; padding-left: 0;">
+                            <li><strong>Birthday Celebrations:</strong> From intimate gatherings to extravagant parties</li>
+                            <li><strong>Anniversary Parties:</strong> Honoring your special milestones with elegance</li>
+                            <li><strong>Holiday Events:</strong> Festive celebrations for any occasion</li>
+                            <li><strong>Private Dinners:</strong> Sophisticated dining experiences in unique settings</li>
+                        </ul>
+                        <p>Every social event is an opportunity to create beautiful memories. We take pride in handling all details, allowing you to fully enjoy your special moment with friends and family.</p>
+                    `
+                }
+            };
+
+            // Show modal when a service card is clicked
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const serviceType = this.getAttribute('data-service');
+                    const serviceInfo = serviceDetails[serviceType];
+                    
+                    if (serviceInfo) {
+                        modalTitle.textContent = serviceInfo.title;
+                        modalBody.innerHTML = serviceInfo.content;
+                        
+                        modal.style.display = 'block';
+                        setTimeout(() => {
+                            modal.classList.add('modal-active');
+                        }, 10);
+                    }
+                });
+            });
+
+            // Close modal
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            function closeModal() {
+                modal.classList.remove('modal-active');
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 300);
+            }
+
+            // Form submission
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Simple validation
+                if (!name || !email || !message) {
+                    alert('Please fill all required fields');
+                    return;
+                }
+                
+                // In a real application, you would send this data to a server
+                console.log('Form submitted:', { name, email, message });
+                
+                // Show success message
+                successMessage.style.display = 'block';
+                
+                // Reset form
+                contactForm.reset();
+                
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.style.display = 'none';
+                }, 5000);
+            });
+
+            // Back to top button functionality
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
+                }
+            });
+
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Discover more button
+            discoverMoreBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const servicesSection = document.querySelector('.services-grid');
+                servicesSection.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // Testimonials slider
+            let currentSlide = 0;
+            const totalSlides = document.querySelectorAll('.testimonial-slide').length;
+
+            function showSlide(index) {
+                if (index < 0) index = totalSlides - 1;
+                if (index >= totalSlides) index = 0;
+                
+                currentSlide = index;
+                testimonialTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update dots
+                testimonialDots.forEach(dot => dot.classList.remove('active'));
+                testimonialDots[currentSlide].classList.add('active');
+            }
+
+            // Initialize testimonial slider
+            testimonialDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const slideIndex = parseInt(this.getAttribute('data-index'));
+                    showSlide(slideIndex);
+                });
+            });
+
+            // Auto slide testimonials
+            setInterval(() => {
+                showSlide(currentSlide + 1);
+            }, 5000);
+
+            // Image hover animation
+            const eventImage = document.querySelector('.event-image');
+            eventImage.addEventListener('mousemove', function(e) {
+                const { left, top, width, height } = this.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                
+                this.style.transform = `scale(1.03) rotate(${x * 5}deg) translateY(${y * 10}px)`;
+            });
+
+            eventImage.addEventListener('mouseleave', function() {
+                this.style.transform = '';
+            });
+
+            // Add subtle animations when elements come into view
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Apply observer to elements
+            document.querySelectorAll('.service-card, .contact-form, .testimonials-container').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>

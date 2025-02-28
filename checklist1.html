@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Elite Occasions - Luxury Event Planning</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #D4AF37;
+            --dark-gold: #B4891D;
+            --light-gold: #FFE5B4;
+            --dark-blue: #0a1928;
+            --white: #ffffff;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a1928, #1c2f3e);
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .logo {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.3));
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+
+        .navigation {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .navigation a {
+            color: var(--gold);
+            text-decoration: none;
+            padding: 12px 28px;
+            margin: 0 15px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 2px solid transparent;
+            border-radius: 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: 0.5px;
+        }
+
+        .navigation a:hover {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            text-align: center;
+            font-size: 3rem;
+            background: linear-gradient(to right, var(--light-gold), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 60px 0;
+            padding: 0 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: titleFade 1s ease-in-out;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .checklist-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: var(--light-gold);
+            font-size: 1.2rem;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .checklist-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .custom-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gold);
+            border-radius: 6px;
+            margin-right: 15px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .custom-checkbox.checked {
+            background: var(--gold);
+        }
+
+        .custom-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            color: var(--dark-blue);
+            font-size: 16px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--gold), var(--light-gold));
+            border-radius: 3px;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .tips-section {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            margin: 60px 0;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .tip-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card h4 {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        /* New styles for additional content */
+        .countdown-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .countdown-box {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            min-width: 100px;
+            border: 1px solid var(--gold);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .countdown-label {
+            font-size: 0.9rem;
+            color: var(--light-gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .custom-task-section {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .task-form {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .task-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .task-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .task-input:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        }
+
+        .task-submit {
+            background: var(--gold);
+            color: var(--dark-blue);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .task-submit:hover {
+            background: var(--dark-gold);
+            transform: translateY(-2px);
+        }
+
+        .task-date-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        #custom-tasks-container {
+            margin-top: 20px;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .task-item-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .task-text {
+            font-size: 1rem;
+        }
+
+        .task-date {
+            font-size: 0.8rem;
+            color: var(--light-gold);
+        }
+
+        .task-delete {
+            background: rgba(255, 0, 0, 0.2);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .task-delete:hover {
+            background: rgba(255, 0, 0, 0.4);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(30deg);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .theme-toggle i {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .theme-silver {
+            --gold: #C0C0C0;
+            --dark-gold: #A9A9A9;
+            --light-gold: #E5E4E2;
+        }
+
+        .theme-rose {
+            --gold: #B76E79;
+            --dark-gold: #A45A64;
+            --light-gold: #DDBEC3;
+        }
+
+        .theme-selector {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            padding: 15px;
+            display: none;
+            z-index: 1000;
+            border: 1px solid var(--gold);
+        }
+
+        .theme-option {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-option:hover {
+            transform: scale(1.2);
+        }
+
+        .gold-theme {
+            background: linear-gradient(135deg, #D4AF37, #FFE5B4);
+        }
+
+        .silver-theme {
+            background: linear-gradient(135deg, #C0C0C0, #E5E4E2);
+        }
+
+        .rose-theme {
+            background: linear-gradient(135deg, #B76E79, #DDBEC3);
+        }
+
+        .budget-tracker {
+            margin: 40px 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .budget-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .budget-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .budget-card {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .budget-amount {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin: 10px 0;
+        }
+
+        .budget-label {
+            color: var(--light-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .expense-list {
+            margin-top: 30px;
+        }
+
+        .expense-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .expense-category {
+            font-weight: 500;
+            color: var(--light-gold);
+        }
+
+        .expense-amount {
+            font-weight: 600;
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--dark-blue);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transform: translateX(120%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                padding: 10px;
+            }
+
+            .navigation a {
+                display: block;
+                margin: 10px auto;
+                width: 80%;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+
+            .budget-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes titleFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0);
+            }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+
+        .search-container {
+            display: flex;
+            margin: 20px 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px 0 0 8px;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .search-button {
+            background: var(--gold);
+            color: var(--dark-blue);
+            border: none;
+            padding: 0 20px;
+            border-radius: 0 8px 8px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        #search-results {
+            max-width: 600px;
+            margin: 20px auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="logo-container">
+        <img class="logo" src="logo.jpg" alt="Elite Occasions Logo" style="max-width: 100%; height: auto;">
+    </div>
+
+    <div class="navigation">
+        <a href="index.html">Home</a>
+        <a href="about1.html">About</a>
+        <a href="checklist1.html">Checklist</a>
+    </div>
+    <div class="container">
+        <h1 class="main-title">Elite Occasions Event Checklist</h1>
+
+        <div class="search-container">
+            <input type="text" class="search-input" id="search-tasks" placeholder="Search tasks...">
+            <button class="search-button" id="search-button"><i class="fas fa-search"></i></button>
+        </div>
+        <div id="search-results"></div>
+<div class="countdown-section">
+            <h2>Event Countdown</h2>
+            <p>Set and track the time remaining until your big event</p>
+            <input type="date" id="event-date" class="task-date-input" style="margin: 20px auto; display: block;">
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-number" id="seconds">0</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+
+        
+
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+        </div>
+
+        <div class="checklist-container">
+            <div class="section">
+                <h2>Initial Planning</h2>
+                <h3>2-3 Months Before</h3>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Define event vision and goals</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Establish budget and timeline</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Research and book venue</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Create guest list</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Vendor Selection</h2>
+                <h3>6-8 Weeks Before</h3>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Book catering service</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Arrange entertainment</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Order decorations</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Hire photographer</span>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2>Final Preparations</h2>
+                <h3>1-2 Weeks Before</h3>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Confirm all vendors</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Create detailed timeline</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Prepare welcome packages</span>
+                </div>
+                <div class="checklist-item">
+                    <div class="custom-checkbox"></div>
+                    <span>Final guest count</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-task-section">
+            <h2>Custom Tasks</h2>
+            <p>Add your own custom tasks for your event planning process</p>
+            <form id="custom-task-form" class="task-form">
+                <input type="text" class="task-input" id="task-input" placeholder="Enter new task" required>
+                <input type="date" class="task-date-input" id="task-date" required>
+                <button type="submit" class="task-submit">Add Task</button>
+            </form>
+            <div id="custom-tasks-container"></div>
+        </div>
+
+        <div class="budget-tracker">
+            <h2>Budget Tracker</h2>
+            <p>Keep track of your event expenses</p>
+            <form id="budget-form" class="budget-form">
+                <input type="text" class="task-input" id="expense-description" placeholder="Expense description" required>
+                <input type="number" class="task-input" id="expense-amount" placeholder="Amount" min="0" step="0.01" required>
+                <button type="submit" class="task-submit">Add Expense</button>
+            </form>
+
+            <div class="budget-summary">
+                <div class="budget-card">
+                    <div class="budget-label">Total Budget</div>
+                    <div class="budget-amount">₹<span id="total-budget">1000000</span></div>
+                    <button id="edit-budget" class="task-submit" style="padding: 8px 15px; font-size: 0.9rem;">Edit</button>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-label">Spent</div>
+                    <div class="budget-amount">₹<span id="total-spent">0</span></div>
+                </div>
+                <div class="budget-card">
+                    <div class="budget-label">Remaining</div>
+                    <div class="budget-amount">₹<span id="remaining-budget">1000000</span></div>
+                </div>
+            </div>
+
+            <div class="expense-list" id="expense-list"></div>
+        </div>
+
+        <div class="tips-section">
+            <h2>Professional Event Planning Tips</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <h4>Budgeting Wisely</h4>
+                    <p>Always include a 10-15% buffer in your budget for unexpected expenses. Prioritize spending on elements that create the most impact.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Timing is Everything</h4>
+                    <p>Schedule key moments around your guests' natural energy levels. Important presentations or speeches are best scheduled after meals.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Vendor Management</h4>
+                    <p>Maintain a detailed vendor contact sheet and timeline. Regular check-ins ensure everyone is aligned with your vision.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Guest Experience</h4>
+                    <p>Consider the entire guest journey from invitation to departure. Small personal touches make a lasting impression.</p>
+                </div>
+                <div class="tip-card">
+                    <h4>Contingency Planning</h4>
+                    <p>Always have a Plan B for outdoor elements, technical equipment, and key personnel to ensure smooth execution regardless of circumstances.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-toggle" id="theme-button">
+        <i class="fas fa-palette"></i>
+    </div>
+
+    <div class="theme-selector" id="theme-selector">
+        <div class="theme-option gold-theme" data-theme="default"></div>
+        <div class="theme-option silver-theme" data-theme="silver"></div>
+        <div class="theme-option rose-theme" data-theme="rose"></div>
+    </div>
+
+    <div class="notification" id="notification">Task saved successfully!</div>
+
+    <script>
+        // Local Storage Functions
+        function saveToLocalStorage(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        function getFromLocalStorage(key) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : null;
+        }
+
+        // Initialize tasks from localStorage or set to empty array
+        let tasks = getFromLocalStorage('eliteOccasionsTasks') || [];
+        let expenses = getFromLocalStorage('eliteOccasionsExpenses') || [];
+        let totalBudget = getFromLocalStorage('eliteOccasionsBudget') || 10000;
+        let eventDate = getFromLocalStorage('eliteOccasionsEventDate') || '';
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Add interactivity to checkboxes
+        document.querySelectorAll('.custom-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+                updateProgress();
+                
+                if (checkbox.classList.contains('checked')) {
+                    showNotification('Task completed!');
+                }
+            });
+        });
+
+        // Update progress bar
+        function updateProgress() {
+            const total = document.querySelectorAll('.custom-checkbox').length;
+            const checked = document.querySelectorAll('.custom-checkbox.checked').length;
+            const progress = (checked / total) * 100;
+            document.querySelector('.progress-fill').style.width = `${progress}%`;
+            
+            // Save checklist state to localStorage
+            const checklistItems = document.querySelectorAll('.checklist-item');
+            const checklistState = [];
+            
+            checklistItems.forEach(item => {
+                const text = item.querySelector('span').textContent;
+                const isChecked = item.querySelector('.custom-checkbox').classList.contains('checked');
+                checklistState.push({ text, isChecked });
+            });
+            
+            saveToLocalStorage('eliteOccasionsChecklist', checklistState);
+        }
+
+        // Load saved checklist state
+        function loadChecklistState() {
+            const savedState = getFromLocalStorage('eliteOccasionsChecklist');
+          
+            if (savedState) {
+                const checkboxes = document.querySelectorAll('.custom-checkbox');
+                
+                checkboxes.forEach
+</script>
+</body>
+</html>
